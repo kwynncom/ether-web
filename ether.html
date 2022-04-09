@@ -22,7 +22,7 @@ p  { margin-top: 1ex; }
         <p>In March, 2022, I started discussing and researching an NFT project.  I'm writing this sentence on April 9.  So far I have minted several test 
             tokens first from the command line and then from the web.</p>
         
-        <p>Some of you might want to <a href=''>skip to the web examples</a>.  </p>
+        <p>Some of you might want to <a href='#webex10sp'>skip to the web examples</a>.  </p>
     </section>
 
     <section>
@@ -71,15 +71,19 @@ Contract deployed to address: 0x51174F5CD092e8876846684607eB8f89A8C93def
         </section>
         
         
-<section>
+<section id='webex10sp'>
     <h2>The web - Connect to MetaMask, client-size JavaScript "hello world" notes</h2>
 
-    <p>add link / live example</p>
+    <p>Two examples: A <a href='hello_world_ETH_tx.html'>generic ETH transaction / sending eth</a>, and then 
+        <a href='hello_world_mint_NFT.html'>mint an NFT</a>.
+    </p>
 
     <ul>
         <li>starting from <a href='https://docs.metamask.io/guide/sending-transactions.html'>MetaMask docs</a></li>
         <li>the original had gas settings</li>
-        <li>0x2D79883D20000 === 0.0008 ETH in the example</li>
+        <li>0x2D79883D20000 === 0.0008 ETH in the example.  
+            See <a href='https://lab.miguelmota.com/ethereum-unit-converter/example/'>ETH - WEI - hex calculator</a>.  A WEI is 
+                    10<sup>-18</sup> Ether.  Hex is needed for the examples I adapted.</li>
         <li>I do not yet fully understand how the client-side JS examples relate to 
             <a href='https://web3js.readthedocs.io/en/v1.7.1/web3-eth.html#sendtransaction'>web3 in the more general sense</a></li>
         <li>I only got one or two useful points from the following only because it's not the path I plan to take, and it's much more complicated 
@@ -90,25 +94,13 @@ Contract deployed to address: 0x51174F5CD092e8876846684607eB8f89A8C93def
         <li>Similar to the above, I didn't use this much, but it helped me along a bit: 
             <a href='https://forum.moralis.io/t/one-click-mint-nft-button-erc1155-721-boilerplate/2617/5'>Moralis</a> library (?) discussion</li>
 
+                        <li>I have not tried this yet, but this looks potential more efficient than what I have done: 
+                    <a href='https://codepen.io/BboyAkers/embed/PoqQNpw'>"BboyAkers" Ether button</a></li>
+        
     </ul>
 
 
-</section>
-        
-        <section>
-            <h2>links</h2>
-            <ul>
-                
-                <li><a href='https://docs.metamask.io/guide/sending-transactions.html'>MetaMask button example</a>.  This is the example I started from 
-                to get something working.</li>
-                                    
-                <li><a href='https://lab.miguelmota.com/ethereum-unit-converter/example/'>WEI to hex converter</a>, and other conversions.  A WEI is 
-                    10<sup>-18</sup> Ether.  Hex is needed for the examples I adapted.</li>
-                <li>I have not tried this yet, but this looks potential more efficient than what I have done: 
-                    <a href='https://codepen.io/BboyAkers/embed/PoqQNpw'>"BboyAkers" Ether button</a></li>
-                
-            </ul>
-        </section>
     </section>
+</section>
 </body>
 </html>

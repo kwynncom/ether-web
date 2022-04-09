@@ -6,9 +6,9 @@
 
 <title>NFT mint test</title>
 
-<script src='/opt/kwynn/js/utils.js'></script>
-<script src='web3.min.js'></script>
-<script>   // see notes in hello_world
+<script src='/opt/kwynn/js/utils.js'>/* defines onDOMLoad below, perhaps others */</script> 
+<script src='/opt/js/web3/web3.min.js'></script>
+<script>   // see notes in hello_world_ETH_tx
 
 let accounts = []; 
     
@@ -39,7 +39,29 @@ async function getAccount() { accounts = await ethereum.request({ method: 'eth_r
 </script>
 </head>
 <body>
-<button class="enableEthereumButton btn">Enable Ethereum / connect to MetaMask</button>
-<button class="sendEthButton btn">Mint NFT</button>
+<div>
+    <div style='margin-bottom: 2ex; '>
+        <button class="enableEthereumButton btn">Step 1 - Enable Ethereum / connect to MetaMask</button>
+    </div>
+    <div>
+        <button class="sendEthButton btn">Step 2 - Mint NFT</button>
+    </div>
+</div>
+
+    <p>I think I limited the first sample contract to 15 tokens, and I've minted 7 so far.  I'll try to remember to link to the new one when I 
+        make it.
+        
+    </p>
+    
+<p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs.
+
+</p>
+
+<p><a href='ether.html'>My main doc page</a> 
+    <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>
+     <span style='padding-left: 3ex;'><a href='hello_world_ETH_tx.html'>standard send ETH transaction</a></span>       
+</p>
+
+    
 </body>
 </html>
