@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'    />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+<title>MetaMask test</title>
+
+<script src='/opt/js/web3/web3.min.js'></script>
+<script src='/opt/kwynn/js/utils.js'></script>
+<script>
+
+var accounts = []; // needs to be scoped to live outside of the onDOM block below
+    
+onDOMLoad( () => { // defined in /opt/kwynn/... aka part of https://github.com/kwynncom/kwynn-php-general-utils
+    const ethereumButton = qs('.enableEthereumButton'); // querySelector, also defined in "kwynn"
+    const sendEthButton  = qs('.sendEthButton');
+
+    ethereumButton.addEventListener('click', () => { getAccount();  });
+
+    sendEthButton.addEventListener('click', () => {
+      ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+              from: accounts[0],
+              to: '0x2f318C334780961FB129D2a6c30D0763d9a5C970',
+              value : '0x2D79883D20000' // 0.0008 ETH
+            }]
+        }).then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
+    }); // ETH.request
+}); // on DOM load
+
+async function getAccount() { accounts = await ethereum.request({ method: 'eth_requestAccounts' }); }
+</script>
+</head>
+<body>
+    <div>
+<button class="enableEthereumButton btn">Enable Ethereum / connnect to MetaMask</button>
+<button class="sendEthButton btn">Send Eth</button>
+    </div>
+    
+    <p>Please note that this is meant for testing only; do not send real Ether.  The ETH is NOT going to me.  I'm not sure to whom it's going, in fact.</p>
+    
+    <p>v2022/04/09 02:31</p>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'    />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+<title>Ethereum / NFT notes</title>
+
+<style>
+body { font-family: sans-serif; }
+h1 { margin-top: 0.3ex; margin-bottom: 0.2ex; }
+h2 { margin-top: 0.3ex; margin-bottom: 0.2ex; font-size: 125%; }
+p  { margin-top: 1ex; }
+
+</style>
+</head>
+<body>
+<section>
+    <h1>Ethereum / NFT notes and resources</h1>
+    <section>
+        <h2>intro</h2>
+        <p>In March, 2022, I started discussing and researching an NFT project.  I'm writing this sentence on April 9.  So far I have minted several test 
+            tokens first from the command line and then from the web.</p>
+        
+        <p>Some of you might want to <a href=''>skip to the web examples</a>.  </p>
+    </section>
+
+    <section>
+        <h2>creating and deploying contracts, and minting from the command line</h2>
+
+        <p>My client will use OpenSea as a secondary market.  The secondary market has nothing to do with me as the contract 
+            writer; at least, that is my conclusion so far.  However, I didn't understand that weeks ago, so I used 
+            <a href='https://docs.opensea.io/docs/getting-started-1'>one of OpenSea's tutorials</a>.  What I mainly wound up using was 
+            <a href='https://github.com/ProjectOpenSea/nft-tutorial/tree/part_four'>their "part 4" code</a>.  
+                I'll mention this <a href='https://docs.opensea.io/docs/1-structuring-your-smart-contract'>other OpenSea doc link</a>, but I haven't looked 
+            hard at it yet.  </p>
+
+        <p>OpenSea's examples were quite good.  The only major criticism I have is that the test ETH faucet they recommended (for the Rinkeby Testnet) did not 
+            work and wasted my time trying to get it to work.  The one they sent me to forced one to post publicly on social media.  The ones that 
+            worked did not.  In hindsight, a hint that it wasn't working was that the previous transactions displayed were from "2 days ago."  
+        </p>
+
+        <h3>working test ETH faucet (Rinkeby Testnet)</h3>
+        <p><a href='https://rinkebyfaucet.com/'>RinkebyFaucet</a> works without an account to receive 0.1 ETH per day or 0.5 with an Alchemy 
+            account.  You'll 
+            probably want an Alchemy account anyhow, as recommended in OpeaSea's tutorial.  It took 1.5 or 
+            2 minutes to process without an account, or without being logged in.
+        </p>
+
+        <p>I originally used "MyCrypto" in March.  It's not working now.  I mention it only because it did get me started.</p>
+
+        <h3>ETH needed to test / sample account history</h3>
+
+        <p>Contract creation cost 0.0034 ETH with a creation time of several minutes, so that first 0.01 limit from MyCrypto  was a problem.  See 
+            <a href='https://rinkeby.etherscan.io/txs?a=0x9BEb87E50Dbb3f1356C9B8d72A5F08C794d3b95f'>my 
+            test account history</a> on EtherScan.  Note that it includes my test contracts.
+         </p>
+            
+             
+        <h3>tutorial command line notes</h3>
+
+        <p>I noted that an EtherScan key takes 5 - 10 minutes after creation to become valid.      </p>
+
+        <pre>npx hardhat run scripts/deploy.js --network rinkeby --verbose
+npx hardhat mint --address 0x9BEb87E50Dbb3f1356C9B8d72A5F08C794d3b95f
+npx hardhat deploy --network rinkeby
+Contract deployed to address: 0x51174F5CD092e8876846684607eB8f89A8C93def
+# That is the address of the contract itself.  You can see from EtherScan, created Mar-10-2022 10:17:04 PM +UTC
+        </pre>
+             
+        </section>
+        
+        
+<section>
+    <h2>The web - Connect to MetaMask, client-size JavaScript "hello world" notes</h2>
+
+    <p>add link / live example</p>
+
+    <ul>
+        <li>starting from <a href='https://docs.metamask.io/guide/sending-transactions.html'>MetaMask docs</a></li>
+        <li>the original had gas settings</li>
+        <li>0x2D79883D20000 === 0.0008 ETH in the example</li>
+        <li>I do not yet fully understand how the client-side JS examples relate to 
+            <a href='https://web3js.readthedocs.io/en/v1.7.1/web3-eth.html#sendtransaction'>web3 in the more general sense</a></li>
+        <li>I only got one or two useful points from the following only because it's not the path I plan to take, and it's much more complicated 
+            than I need, but it did get me started, so I'll mention the 
+            <a href='https://www.quicknode.com/guides/web3-sdks/how-to-build-a-one-click-sign-in-using-metamask-with-php-s-laravel'>QuickNode article</a>
+        </li>
+
+        <li>Similar to the above, I didn't use this much, but it helped me along a bit: 
+            <a href='https://forum.moralis.io/t/one-click-mint-nft-button-erc1155-721-boilerplate/2617/5'>Moralis</a> library (?) discussion</li>
+
+    </ul>
+
+
+</section>
+        
+        <section>
+            <h2>links</h2>
+            <ul>
+                
+                <li><a href='https://docs.metamask.io/guide/sending-transactions.html'>MetaMask button example</a>.  This is the example I started from 
+                to get something working.</li>
+                                    
+                <li><a href='https://lab.miguelmota.com/ethereum-unit-converter/example/'>WEI to hex converter</a>, and other conversions.  A WEI is 
+                    10<sup>-18</sup> Ether.  Hex is needed for the examples I adapted.</li>
+                <li>I have not tried this yet, but this looks potential more efficient than what I have done: 
+                    <a href='https://codepen.io/BboyAkers/embed/PoqQNpw'>"BboyAkers" Ether button</a></li>
+                
+            </ul>
+        </section>
+    </section>
+</body>
+</html>

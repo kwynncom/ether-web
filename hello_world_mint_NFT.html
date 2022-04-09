@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'    />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+<title>NFT mint test</title>
+
+<script src='/opt/kwynn/js/utils.js'></script>
+<script src='web3.min.js'></script>
+<script>   // see notes in hello_world
+
+let accounts = []; 
+    
+onDOMLoad( () => { 
+
+    const ethereumButton = document.querySelector('.enableEthereumButton');
+    const sendEthButton = document.querySelector('.sendEthButton');
+
+    ethereumButton.addEventListener('click', () => {  getAccount(); });
+
+    sendEthButton.addEventListener('click', () => {
+      ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+              from: accounts[0],
+              to: '0x51174F5CD092e8876846684607eB8f89A8C93def',
+              recipient: accounts[0],
+              value : '0x2D79883D20000', // 0.0008 ETH
+              data : '0x755edd170000000000000000000000009beb87e50dbb3f1356c9b8d72a5f08c794d3b95f',
+            }],
+        }) // request
+        .then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
+    }); // onclick
+}); // on DOM
+
+async function getAccount() { accounts = await ethereum.request({ method: 'eth_requestAccounts' }); }
+</script>
+</head>
+<body>
+<button class="enableEthereumButton btn">Enable Ethereum / connect to MetaMask</button>
+<button class="sendEthButton btn">Mint NFT</button>
+</body>
+</html>
