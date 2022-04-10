@@ -14,11 +14,6 @@ let accounts = [];
     
 onDOMLoad( () => { 
 
-    const ethereumButton = document.querySelector('.enableEthereumButton');
-
-    ethereumButton.addEventListener('click', () => {
-        mint();
-    }); // onclick
 }); // on DOM
 
 async function mint() {
@@ -40,16 +35,13 @@ async function mint() {
     .catch((error) => console.error);
 }
 
-async function ethConnect() { 
-    // await ethereum.enable();
-    await ethereum.request({ method: 'eth_requestAccounts' }); 
-}
+async function ethConnect() { await ethereum.enable(); }
 </script>
 </head>
 <body>
 <div>
     <div style='margin-bottom: 2ex; '>
-        <button class="enableEthereumButton btn">mint NFT - 1 button</button>
+        <button class="enableEthereumButton btn" onclick='mint();'>mint NFT - 1 button</button>
     </div>
 </div>
     
