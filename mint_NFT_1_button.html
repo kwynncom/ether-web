@@ -6,42 +6,38 @@
 
 <title>NFT mint test</title>
 
-<script src='/opt/kwynn/js/utils.js'>/* defines onDOMLoad below, perhaps others */</script> 
 <script src='/opt/js/web3/web3.min.js'></script>
 <script>   // see notes in hello_world_ETH_tx
 
-let accounts = []; 
-    
-onDOMLoad( () => { 
-
-}); // on DOM
-
-async function mint() {
-        if (!ethereum.selectedAddress) {
-
-        await ethConnect();
+class mintcl {
+    static async mint() {
+        
+        if (!ethereum.selectedAddress) await mintcl.ethConnect();
+        
+        const custAddr = ethereum.selectedAddress;
+      
+        ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+              from: custAddr,
+              to: '0x8ca86d22241C3458441E286Fa0062023988c1E61',
+              recipient: custAddr,
+              value : '0x11c37937e080000', // 0.08 ETH
+              data : '0x755edd170000000000000000000000009beb87e50dbb3f1356c9b8d72a5f08c794d3b95f',
+            }],
+        }) // request
+        .then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
     }
-  ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [{
-          from: ethereum.selectedAddress,
-          to: '0x8ca86d22241C3458441E286Fa0062023988c1E61',
-          recipient: ethereum.selectedAddress,
-          value : '0x11c37937e080000', // 0.08 ETH
-          data : '0x755edd170000000000000000000000009beb87e50dbb3f1356c9b8d72a5f08c794d3b95f',
-        }],
-    }) // request
-    .then((txHash) => console.log(txHash))
-    .catch((error) => console.error);
-}
 
-async function ethConnect() { await ethereum.enable(); }
+    static async ethConnect() { await ethereum.request({ method: 'eth_requestAccounts' });  }
+}
 </script>
 </head>
 <body>
 <div>
     <div style='margin-bottom: 2ex; '>
-        <button class="enableEthereumButton btn" onclick='mint();'>mint NFT - 1 button</button>
+        <button class="enableEthereumButton btn" onclick='mintcl.mint();'>mint NFT - 1 button</button>
     </div>
 </div>
     
@@ -54,7 +50,7 @@ async function ethConnect() { await ethereum.enable(); }
      <span style='padding-left: 3ex;'><a href='hello_world_ETH_tx.html'>standard send ETH transaction</a></span>       
 </p>
 
-<p>v 20:46 - 1 button attempts
+<p>v 21:03 - 1 button working
 </p>
 
 </body>
