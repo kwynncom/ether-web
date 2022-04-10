@@ -78,7 +78,8 @@ npx hardhat verify 0x8ca86d22241C3458441E286Fa0062023988c1E61
         
 <section id='webex10sp'>
     <h2>The web - Connect to MetaMask, client-size JavaScript "hello world" notes</h2>
-
+    
+   
     <p>Two examples: A <a href='hello_world_ETH_tx.html'>generic ETH transaction / sending eth</a>, and then 
         <a href='hello_world_mint_NFT.html'>mint an NFT</a>.
     </p>
@@ -86,6 +87,11 @@ npx hardhat verify 0x8ca86d22241C3458441E286Fa0062023988c1E61
     <h3>notes</h3>
     <ul>
         <li>starting from <a href='https://docs.metamask.io/guide/sending-transactions.html'>MetaMask docs</a></li>
+        <li>You'll need web3.min.js and web3.min.js.map from the 
+            <a href='https://github.com/ChainSafe/web3.js/tree/1.x/dist'>ChainSafe GitHub repo's dist folder</a>.  Or you can them and 
+            the whole server-side Node.js library with "npm install web3".
+            
+        </li>
         <li>the original had gas settings</li>
         <li>0x11c37937e080000 === 0.08 ETH in the newer (2nd) example. Thankfully, lower-case works, too.  </li>
         <li>0x2D79883D20000 === 0.0008 ETH in the older (1st) example.  
@@ -103,9 +109,8 @@ npx hardhat verify 0x8ca86d22241C3458441E286Fa0062023988c1E61
         <li>Similar to the above, I didn't use this much, but it helped me along a bit: 
             <a href='https://forum.moralis.io/t/one-click-mint-nft-button-erc1155-721-boilerplate/2617/5'>Moralis</a> library (?) discussion</li>
 
-                        <li>I have not tried this yet, but this looks potential more efficient than what I have done: 
-                    <a href='https://codepen.io/BboyAkers/embed/PoqQNpw'>"BboyAkers" Ether button</a></li>
-        
+        <li>Note that ethereum.enable() has been deprecated.</li>
+
     </ul>
 
 

@@ -6,46 +6,49 @@
 
 <title>NFT mint with one button</title>
 
+<script> // CONFIG HERE ******************
+    var myNFTConfig = {
+        to    : '0x8ca86d22241C3458441E286Fa0062023988c1E61', // contract address
+        data  : '0x755edd170000000000000000000000009beb87e50dbb3f1356c9b8d72a5f08c794d3b95f', // ABI for the EVM  
+        value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei
+    }; // CONFIG HERE ********************
+</script>
+
 <script src='/opt/js/web3/web3.min.js'></script>
-
 <script>
-
 async function mint() {
     
-    if (!ethereum.selectedAddress) await  await ethereum.request({ method: 'eth_requestAccounts' });
+    if (!ethereum.selectedAddress) await ethereum.request({ method: 'eth_requestAccounts' });
 
     const custAddr = ethereum.selectedAddress;
+    const rargs = myNFTConfig;
+    rargs.from = rargs.recipient = custAddr;
 
     ethereum.request({
       method: 'eth_sendTransaction',
-      params: [{
-          from: custAddr,
-          to: '0x8ca86d22241C3458441E286Fa0062023988c1E61',
-          recipient: custAddr,
-          value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH
-          data : '0x755edd170000000000000000000000009beb87e50dbb3f1356c9b8d72a5f08c794d3b95f', // ABI for the EVM
-        }],
-    }) // request
-    .then((txHash) => console.log(txHash))
-    .catch((error) => console.error);
+      params: [rargs],
+    }).then((txHash) => console.log(txHash))
+      .catch((error) => console.error);
 }
 </script>
 </head>
 <body>
 <div>
-    <div style='margin-bottom: 2ex; '>
-        <button onclick='mint();'>Connect to MetaMask and mint an NFT for 0.08 ETH.</button>
+    <div style='margin-bottom: 2ex; margin-top: 1.5ex; '>
+        <button onclick='mint();' style='font-size: 120%;'>Connect to MetaMask and mint an NFT for 0.08 ETH.</button>
     </div>
 </div>
     
-<p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs.</p>
+<p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs, especially for 
+    0.08 of real ETH.</p>
 
 <p><a href='ether.html'>My main doc page</a> 
     <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>
      <span style='padding-left: 3ex;'><a href='hello_world_ETH_tx.html'>standard send ETH transaction</a></span>       
+     <span style='padding-left: 3ex;'><a href='hello_world_mint_NFT.html'>2 button mint (earlier version than this)</a></span>  
 </p>
 
-<p>v 21:10 - 1 button working</p>
+<p>v22:49 - 2 btn link</p>
 
 </body>
 </html>
