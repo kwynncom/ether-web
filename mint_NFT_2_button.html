@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'    />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+<title>NFT mint 2 button, improved</title>
+
+<script src='/opt/js/web3/web3.min.js'></script>
+<script>
+    
+class nftMintWeb2BtnCl {
+ 
+config() { // CONFIG HERE ******************
+    this.configv = { 
+        to    : '0x8ca86d22241C3458441E286Fa0062023988c1E61', // contract address
+        data  : '0x755edd170000000000000000000000009beb87e50dbb3f1356c9b8d72a5f08c794d3b95f', // ABI for the EVM  
+        value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei
+    }; // CONFIG HERE ********************        
+}
+
+constructor() { this.config(); }
+
+    
+async connect() { 
+    this.showConnResult('beforeConn');
+    await ethereum.request({ method: 'eth_requestAccounts' }); 
+    this.showConnResult();
+}
+
+showConnResult(state) {
+    
+    const e = document.getElementById('connrese');
+            
+    if (state === 'beforeConn') { e.innerHTML = '&nbsp;'; return; }
+     
+    if (ethereum.selectedAddress) 
+         e.innerHTML = 'connected';
+    else e.innerHTML = 'NOT connected';
+    
+}
+
+async mint() {
+
+    this.showConnResult('beforeConn');
+    if (!ethereum.selectedAddress) await this.connect();
+    this.showConnResult();
+
+    const custAddr = ethereum.selectedAddress;
+    const rargs = this.configv;
+    rargs.from = rargs.recipient = custAddr;
+
+    ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [rargs],
+    }).then((txHash) => console.log(txHash))
+      .catch((error) => console.error);
+} // func mint
+} // class NFT
+
+var myMintObj = new nftMintWeb2BtnCl();
+
+window.addEventListener('DOMContentLoaded', () => { 
+    myMintObj.showConnResult(); 
+    ethereum.on('accountsChanged', (accounts) => {  myMintObj.showConnResult(); });
+});
+
+</script>
+</head>
+<body>
+<div>
+    <div style='margin-bottom: 2ex; margin-top: 1.5ex; '>
+        <div style='margin-bottom: 1.5ex;'><button onclick='myMintObj.connect();' style='font-size: 120%;'>Step 1 - Connect to MetaMask.</button></div>
+        <div style='margin-bottom: 2.0ex; ' id='connrese'>&nbsp;</div>
+        <div><button onclick='myMintObj.mint();'    style='font-size: 120%;'>Step 2 - Mint an NFT for 0.08 ETH.</button></div>
+    </div>
+</div>
+
+    <div>
+<p>See the <a href='https://rinkeby.etherscan.io/address/0x8ca86d22241C3458441E286Fa0062023988c1E61'>transactions on EtherScan</a>.</p>
+
+<p>Under some conditions, it may help to <button onclick="location.reload();">refresh the page</button>.  I once had an issue when I returned to 
+    the same instance of a similar page after 18+ hours and didn't hard refresh.  I suppose I could write a 
+    timer or onfocus() or something to account for this, but let's see how testing goes.
+</p>
+    
+<p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs, especially for 
+    0.08 of real ETH.</p>
+
+<p>This is the 3rd version of my minting process.  I was told that a 2 button mint is more conventional.  This version has several improvements.
+    The first versions were on April 9 and 10, 2022.  This version is on April 11 in the evening US Eastern Time.  
+    
+</p>
+
+<p><a href='ether.html'>My main doc page</a> and the other versions.
+    <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>
+</p>
+    </div>
+</body>
+</html>

@@ -38,17 +38,25 @@ async function mint() {
         <button onclick='mint();' style='font-size: 120%;'>Connect to MetaMask and mint an NFT for 0.08 ETH.</button>
     </div>
 </div>
+
+<p>See the <a href='https://rinkeby.etherscan.io/address/0x8ca86d22241C3458441E286Fa0062023988c1E61'>transactions on EtherScan</a>.</p>
+
+<p>Under some conditions, it helps to <button onclick="location.reload();">refresh the page</button>.  I don't think this will be a problem in the 
+    real world.  I think it's a caching issue when you return to the page after 18+ hours and don't hard refresh.  I suppose I could write a 
+    timer to account for this, but let's see how testing goes.
+    
+</p>
     
 <p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs, especially for 
     0.08 of real ETH.</p>
 
-<p><a href='ether.html'>My main doc page</a> 
-    <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>
-     <span style='padding-left: 3ex;'><a href='hello_world_ETH_tx.html'>standard send ETH transaction</a></span>       
-     <span style='padding-left: 3ex;'><a href='hello_world_mint_NFT.html'>2 button mint (earlier version than this)</a></span>  
+<p>This version has been replaced by <a href='mint_NFT_2_button.html'>another 2 button version</a> plus improvements.
+    
 </p>
 
-<p>v22:49 - 2 btn link</p>
+<p><a href='ether.html'>My main doc page</a> 
+    <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>
+</p>
 
 </body>
 </html>
