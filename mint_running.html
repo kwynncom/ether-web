@@ -13,8 +13,22 @@ class nftMintWeb2BtnCl {
  
 config() { // CONFIG HERE ******************
     this.configv = { 
-        to    : '0xb12b33946066799DD095b0227a3E9bAF91B9106a', // contract address
-        data  : '0xabc185c3', // ABI for the EVM  
+        to    : '0x5FbDB2315678afecb367f032d93F642f64180aa3', // contract address
+        data  : web3.eth.abi.encodeFunctionSignature(
+         {
+              "inputs": [],
+              "name": "paidMint",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "payable",
+              "type": "function"
+            }
+        ),
         value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei
     }; // CONFIG HERE ********************        
 }
@@ -75,25 +89,6 @@ window.addEventListener('DOMContentLoaded', () => {
         <div><button onclick='myMintObj.mint();'    style='font-size: 120%;'>Step 2 - Mint an NFT for 0.08 ETH.</button></div>
     </div>
 </div>
-
-    <div>
-        <p>I now have integration with the <a href='https://github.com/kwynncom/nft/blob/2f0ef077273454348898dcbcd730cf34747f29da/contracts/NFT.sol'>contract's 
-                source code in GitHub</a>, and I validated 
-                <a href='https://rinkeby.etherscan.io/address/0xb12b33946066799dd095b0227a3e9baf91b9106a#code'>that one on EtherScan</a>, too.  Contract 0xb12b339...
-                created on the Rinkeby testnet Apr-24-2022 03:04:05 AM +UTC.
-            
-            
-        </p>
-
-<p>Under some conditions, it may help to <button onclick="location.reload();">refresh the page</button>.  I once had an issue when I returned to 
-    the same instance of a similar page after 18+ hours and didn't hard refresh.  I suppose I could write a 
-    timer or onfocus() or something to account for this, but let's see how testing goes.
-</p>
-    
-<p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs, especially for 
-    0.08 of real ETH.  Given that the contract isn't deployed to mainnet (real / live), it won't work anyhow.</p>
-
-<p>Note that I was told that a 2 button mint is more conventional than a 1 button.  </p>
 
 <p><a href='ether.html'>My main doc page</a> and the other versions.
     <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>
