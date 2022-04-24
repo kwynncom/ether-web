@@ -13,8 +13,8 @@ class nftMintWeb2BtnCl {
  
 config() { // CONFIG HERE ******************
     this.configv = { 
-        to    : '0x8ca86d22241C3458441E286Fa0062023988c1E61', // contract address
-        data  : '0x755edd170000000000000000000000009beb87e50dbb3f1356c9b8d72a5f08c794d3b95f', // ABI for the EVM  
+        to    : '0xac9DfC856A446C8A7179319Fd37183b8f3351B49', // contract address
+        data  : '0xabc185c3', // ABI for the EVM  
         value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei
     }; // CONFIG HERE ********************        
 }
@@ -77,7 +77,8 @@ window.addEventListener('DOMContentLoaded', () => {
 </div>
 
     <div>
-<p>See the <a href='https://rinkeby.etherscan.io/address/0x8ca86d22241C3458441E286Fa0062023988c1E61'>transactions on EtherScan</a>.</p>
+<p>See the <a href='https://rinkeby.etherscan.io/address/0x6b6ff3d3d1b83fd68db0e47b3fd8ee9f0130afcdbb89e7d5b25ef369025277f3'>transactions on 
+        EtherScan</a> (contract 0x6b6ff3... created Apr-24-2022 12:53:03 AM +UTC).</p>
 
 <p>Under some conditions, it may help to <button onclick="location.reload();">refresh the page</button>.  I once had an issue when I returned to 
     the same instance of a similar page after 18+ hours and didn't hard refresh.  I suppose I could write a 
@@ -85,12 +86,9 @@ window.addEventListener('DOMContentLoaded', () => {
 </p>
     
 <p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs, especially for 
-    0.08 of real ETH.</p>
+    0.08 of real ETH.  Given that the contract isn't deployed to mainnet (real / live), it won't work anyhow.</p>
 
-<p>This is the 3rd version of my minting process.  I was told that a 2 button mint is more conventional.  This version has several improvements.
-    The first versions were on April 9 and 10, 2022.  This version is on April 11 in the evening US Eastern Time.  
-    
-</p>
+<p>Note that I was told that a 2 button mint is more conventional than a 1 button.  </p>
 
 <p><a href='ether.html'>My main doc page</a> and the other versions.
     <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>

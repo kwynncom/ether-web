@@ -41,20 +41,19 @@ async function getAccount() { accounts = await ethereum.request({ method: 'eth_r
 <body>
 <div>
     <div style='margin-bottom: 2ex; '>
-        <button class="enableEthereumButton btn">Step 1 - Enable Ethereum / connect to MetaMask</button>
+        <button class="enableEthereumButton btn"  >Step 1 - Enable Ethereum / connect to MetaMask</button>
     </div>
     <div>
-        <button class="sendEthButton btn">Step 2 - Mint NFT</button>
+        <button class="sendEthButton btn" disabled='disabled'>Step 2 - Mint NFT</button>
     </div>
 </div>
 
-   <p>This was one of the first versions.  See the main doc page linked just below for the latest.
+   <p>The "Connect to MetaMask" is an early version.  See the main doc page linked just below for the latest.  Later I disabled the "mint" button 
+       because I got a key point wrong.  Also see the latest.
         
     </p>
     
-<p>I won't give as dire a warning about this being test-only because I don't suppose anyone is going to mint random NFTs.
 
-</p>
 
 <p><a href='ether.html'>My main doc page</a> 
     <span style='padding-left: 3ex;'><a href='https://github.com/kwynncom/ether-web'>GitHub repo with this code</a></span>

@@ -84,12 +84,8 @@ npx hardhat verify 0x8ca86d22241C3458441E286Fa0062023988c1E61
     <h3>examples</h3>
     
     <ol>
-        <li><a href='mint_NFT_2_button.html'>2 button NFT mint - improved edition</a> - I was told that 2 buttons is more conventional, plus an 
-        improvement</li>
-        <li><a href='mint_NFT_1_button.html'   >1 button NFT mint</a> - This is the more advanced version.</li>
-        <li><a href='hello_world_mint_NFT.html'>2 button NFT mint</a> - This isn't as stable because it does not check connection each time.  The 
-        1 button mint has improvements even if you want 2 buttons and / or a standard "send" transaction.  It's still a useful example, though.</li>
-        <li><a href='hello_world_ETH_tx.html'>generic send ETH transaction</a> - Same as above.</li>
+        <li><a href='mint_NFT_2_button.html'>NFT mint</a> </li>
+        <li><a href='hello_world_ETH_tx.html'>generic send ETH transaction</a></li>
     </ol>
 
     <h3>notes</h3>
@@ -126,21 +122,32 @@ npx hardhat verify 0x8ca86d22241C3458441E286Fa0062023988c1E61
     <h3>the minting "data" param</h3>
     
     <p>First, note that if the code is verified as noted in the tutorial and with the command above, you can mint on EtherScan from the 
-        contract, such as <a href='https://rinkeby.etherscan.io/address/0x8ca86d22241c3458441e286fa0062023988c1e61#writeContract'>my second 
-            test contract</a> that I used to any degree.  Put 0.08 as the payable amount and whatever address you want to receive the token 
-            in the other param.
+        contract, such as <a href='https://rinkeby.etherscan.io/address/0xac9dfc856a446c8a7179319fd37183b8f3351b49'>my first 4/23/2022 contract</a>.  
+        Put 0.08 as the payable amount.  The connected address / "msg.sender" will receive the token.
     </p>
     
-    <p>If you do it that way, you can see the "data" param in MetaMask.  That data param is the ABI / application binary interface.  In this case, 
-        it's the "mintTo" function's signature--params, types, etc.--in Ethereum Virtual Machine (EVM) bytecode / binary code.  You need that 
+    <p>If you do it that way, you can see (or at least copy and paste) the "data" param in MetaMask.  That data param is the ABI / application 
+        binary interface.  
+        It's the "mintToMsgSender()" function's signature in Ethereum Virtual Machine (EVM) bytecode / binary code.  You need that 
         param in the client-side (web) JavaScript, as shown in my example.  
       </p>
       
-      <p>I'm sure there are other ways to derive the param, and I've seen reference to them, but that works for now.  Hopefully I will update 
-          this when I find a way that I can use before the contract is deployed.
-          
+      <p>I initially assumed that the ABI / "data" param was a compile time signature of the function name and parameter types.  I spent an enormous 
+          amount of time until I realized it's a runtime signature including the actual value of the parameters for that transaction.  As of 
+          the start of my workday on 4/23/2022, I am still using the Etherscan verification and MetaMask to get the proper "data" value.  The 
+          general solution is documented in the <a href='https://web3js.readthedocs.io/en/v1.2.11/web3-eth-abi.html'>JavaScript / Node.js Web3 docs </a>.  
       </p>
+
     </section>
+    </section>
+    
+    <section>
+        <h2>page history</h2>
+        <ol reversed='reversed'>
+            <li>04/23 21:11+ - Better examples after I got the ABI / "data" param right.</li>
+            <li>2022/04/11 - My first examples, with some serious mistakes.</li>
+            <li>2022/04/09 - In March, 2022, I started discussing and researching an NFT project.  I'm writing this sentence on April 9.</li>
+        </ol>
     </section>
 </section>
 </body>
