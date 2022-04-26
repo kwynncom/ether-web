@@ -9,27 +9,16 @@
 <script src='/opt/js/web3/web3.min.js'></script>
 <script>
     
+    // var web3v = require('web3');
+    
 class nftMintWeb2BtnCl {
  
 config() { // CONFIG HERE ******************
     this.configv = { 
-        to    : '0x5FbDB2315678afecb367f032d93F642f64180aa3', // contract address
-        data  : web3.eth.abi.encodeFunctionSignature(
-         {
-              "inputs": [],
-              "name": "paidMint",
-              "outputs": [
-                {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "stateMutability": "payable",
-              "type": "function"
-            }
-        ),
-        value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei
+        to    : '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9', // contract address
+        data  : '0x5b70ea9f',
+        /* value :    '0x38d7ea4c68000', */
+        // value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei
     }; // CONFIG HERE ********************        
 }
 
@@ -84,9 +73,9 @@ window.addEventListener('DOMContentLoaded', () => {
 <body>
 <div>
     <div style='margin-bottom: 2ex; margin-top: 1.5ex; '>
-        <div style='margin-bottom: 1.5ex;'><button onclick='myMintObj.connect();' style='font-size: 120%;'>Step 1 - Connect to MetaMask.</button></div>
+        <div style='margin-bottom: 1.5ex;'><button onclick='myMintObj.connect();' style='font-size: 120%;'>Connect to MetaMask.</button></div>
         <div style='margin-bottom: 2.0ex; ' id='connrese'>&nbsp;</div>
-        <div><button onclick='myMintObj.mint();'    style='font-size: 120%;'>Step 2 - Mint an NFT for 0.08 ETH.</button></div>
+        <div><button onclick='myMintObj.mint();'    style='font-size: 120%;'>Mint an NFT</button></div>
     </div>
 </div>
 
