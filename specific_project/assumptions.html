@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'    />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+<title>NFT project assumptions</title>
+
+<style>
+    body { font-family: sans-serif; }
+    li   { margin-left: 1ex; margin-bottom: 1.0ex; }
+</style>
+</head>
+<body>
+    <section>
+        
+        <h1>NFT project settings / assumptions</h1>
+        
+        <p>If you'll excuse the pun, I'm assuming that the assumptions will change, as of late April, 2022.  I'm listing what needs to be 
+            filled in as far as possible before go day.  </p>
+        
+        <p>I'm going to number this like 1985 BASIC lines.</p>
+        
+        <ol>
+            
+            <li value='150'>There will be a limit of 2,222 tokens. (Note to self: look in the Etherscan verification and make sure that's 
+                2,222 rather than 2,222,000.  That will be fixed in the next GitHub commit to 
+                <a href='https://github.com/kwynncom/nft'>the repo</a>.  For the record, 2222_000 means 2+ million as above.  Update: the 
+                repo has been updated.)</li>
+            
+            <li value='160'>The mint price will be 0.08 ETH (eight hundredths or 8/100 ETH).  That's $247 with an ETH price of $2,838 (as of 
+            2022/04/26 ca 11:02pm EDT / New York time).</li>
+            
+            <li value='200'>I will need the medium-length name of the token / collection.  You showed me a name to the effect of "HolyHeroes."  
+            I don't think this name can or should have spaces, but this is a situation where I am unclear on what is social convention and 
+            what is syntax.  Far be it for me to burden you with technical details.  If you don't have an idea based on convention, I 
+            will look into the limitations.</li>
+            
+            <li value='210'>And then there is the token ticker name like "HOLY" or "ETH."  Again, I'm not sure what's convention and 
+                what's syntax.  Even I know enough to observe that at least by social convention they are 4 - 5 letters at most, and I'm not 
+                sure about 5.
+            </li>
+            
+            <li value='220'>I need to know when the medium name and ticker name can be public, such as visible on the public GitHub repo, 
+                my (this) web site, etc.  
+                
+            </li>
+            
+            <li value='230'>For the above, I need to see if duplicates are enforced / disallowed.  That's probably on me as a technical issue.
+               
+            </li>
+            
+            <li value='300'>There will be roughly 6 people who can do one free mint.  I'm calling this the "freelist."  (Other limitations 
+            of the freelist are below.)</li>
+            
+            <li value='310'>The exact number in the freelist does not matter.  What matters is the assumption that I can keep track of it 
+                "by hand" in a small text file.  If the number is going to go above 15 or so, I need to know.  More limitations below.</li>
+            
+            <li value='350'>There will be a whitelist or early sales list.  More limits below.</li>
+            
+            <li value='360'>For sake of filling in a number for now, the whitelist addresses can mint 2 tokens.  (The likely alternative is 1.  
+                The GitHub version has 2 because 2 seems more meaningful to test.)</li>
+            
+            <li value='370'>The whitelist will be roughly 800 addresses.  In this case, even the order of magnitude is not important because I'll 
+                obviously have to automate the process.</li>
+            
+            <li value='400'>Sales to the general public, for sake of filling in a number, will begin on June 3, 2022 at 9pm EDT (New York time)</li>
+            
+            <li value='410'>Whitelist and free mints will begin exactly 24 hours before the public sale.</li>
+            
+            <li value='420'>The free mint people must claim their free mint during the whitelist/free mint period</li>
+            
+            <li value='500'>The whitelist and freelist will be frozen / fixed / complete / non-changing / hard-coded (hard-code-able) several days 
+                before the whitelist / presale date</li>
+            
+            <li value='600'>The "reveal" or access to the images themselves will happen roughly 3 - 5 days after the public sale begins.</li>
+            
+            <li value='700'>Resales will be on OpenSea.  (I need to test arbitrary metadata / images  on OpenSea.)
+            </li>
+            
+            <li value='710'>Beyond making sure the metadata will work and that resales will work on OpenSea, I'm reasonably sure 
+            OpenSea is not involved in the contract itself, but I need to check this assumption.</li>
+            
+            <li value='720'>As a purely technical issue for me, I need to decide if the metadata base URL can be changed after deployment.  At least, I'm 
+            assuming that's a technical issue, but we can get into that somewhat later.</li>
+            
+            <li value='2000'>For a minor point, the web buttons for "whitelist mint," "free mint," and "public / standard mint" will 
+            be separate buttons.</li>
+        </ol>
+        
+    </section>
+    
+</body>
+</html>
