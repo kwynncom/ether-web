@@ -12,6 +12,7 @@ h1 { margin-top: 0.3ex; margin-bottom: 0.2ex; }
 h2 { margin-top: 0.3ex; margin-bottom: 0.2ex; font-size: 125%; }
 p  { margin-top: 1ex; }
 li { margin-bottom: 1ex; }
+#e2022_0708_1 { margin-top: 3ex; margin-bottom: 4ex; }
 
 </style>
 </head>
@@ -20,8 +21,42 @@ li { margin-bottom: 1ex; }
     <p><a href='/'>home</a></p>
 <section>
     <h1>Ethereum / NFT notes and resources</h1>
+    
+    <section id='e2022_0708_1'>
+        <h2>2022, July 8, 18:40 - dynamic NFTs and update on project</h2>
+        
+        <p>This is in response to a query from my contractee.  Everything I have done is in GitHub in two public repositories--1. the 
+            "server side" <a href='https://github.com/kwynncom/nft'>contracts themselves and code for metadata management</a>, and 
+            2. the <a href='https://github.com/kwynncom/ether-web'>end-user web "button" code</a> (MetaMask, etc.).  
+            Regarding <a href='https://blog.chain.link/what-is-a-dynamic-nft/'>dynamic NFTs</a>, the code already allows dynamism to a 
+            degree.  In 
+            <a href='https://github.com/kwynncom/nft/blob/9bdac6a127581c065d1e3b9ea077ef864fd9c8ac/contracts/NFT.sol'>NFT.sol</a>, the function 
+            "setBaseTokenURI(string memory _baseTokenURI)" (line 14) allows all of the metadata to be changed by pointing to a new base 
+            (directory), 
+            where the files are 1, 2, 3, ....  Those files contain the short JSON metadata file which in turn point to the actual images.  
+            I have tested the function rather extensively.  It works.
+        </p>
+        
+        <p>Everything I have done assumes one has read through OpenSea's tutorials through "part 4" as linked below.
+            
+        </p>
+        
+        <p>It doesn't appear I linked to <a href='/t/22/04/eth/mint_dev.html'>"mint dev"</a> from this page 
+            before.  That is my latest web code.  
+            
+        </p>
+        
+        <p>For the (public) record, the project launch date is predicted to be in August, so my part has been more or less on pause for 
+            weeks.  
+            
+        </p>
+        
+        
+    </section>
+    
+    
     <section>
-        <h2>links</h2>
+        <h2>links (as of late April)</h2>
                 
         <ul>
             <li><a href='specific_project/assumptions.html'>project assumptions</a></li>

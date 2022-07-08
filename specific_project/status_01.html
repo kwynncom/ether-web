@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'    />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+<title>NFT status report #1 - 30 April, 2022</title>
+
+<style>
+    body { font-family: sans-serif; }
+</style>
+</head>
+<body>
+<section>
+    <h1>NFT project status report #1: April 30, 2022</h1>
+    
+    <p>OUTSTANDING HIGH-PRIORITY ISSUE: Use of OpenSea is looking questionable.  Maybe their testnet has been broken for roughly 2 days, but their testnet just 
+        does not seem to want to load images.  If their testnet doesn't work; why should we assume their live system will?  Is an alternative to 
+        OpenSea an option?  Once I recover from frustration (see below), I may finally install Discord and get on their channel or do something 
+        along those lines, but I already consider this a big problem.
+    </p>
+    
+    <h2>overall status</h2>
+    <p>Whitelist and freelist with time restrictions and minting limits appear to work.  Metadata is working fine as I further document
+        below, so I am running out of reasons to think the OpenSea issues are my fault.  
+   </p>
+   <p>At this rate, I may stop for at least a day or two.  I am very, very frustrated with OpenSea.  
+       
+   </p>
+   
+   <section>
+   <h2>the metadata / OpenSea problem</h2>
+   
+   <p>Go to <a href='https://rinkeby.etherscan.io/address/0x09789fc3bca6cab64a6f3d6b86defa360710b10c#readContract'>my latest contract</a> and run the 
+       tokenURI function by individual entering numbers 1 - 4, as 4 different clicks.  I am almost certain this does not require test ETH gas.
+       The metadata in the 
+       sense of the JSON file will show up like this: <a href='https://kwynn.com/t/22/04/eth/mds/4'>https://kwynn.com/t/22/04/eth/mds/4</a> . 
+       Clicking the <a href='https://kwynn.com/t/22/04/eth/mds/4.png'>"image" url</a> should bring up an image.  OpenSea is reading the images:
+       </p>
+       <pre>
+127.0.0.1 - - [30/Apr/2022:17:39:56 -0400] 157986 "GET /t/22/04/eth/mds/mds.php?tokenId=4 HTTP/1.1" 200 147 "-" "got/9.6.0 (https://github.com/sindresorhus/got)"
+178... - - [30/Apr/2022:17:39:56 -0400] 151888 "GET /t/22/04/eth/mds/4 HTTP/1.1" 200 147 "-" "got/9.6.0 (https://github.com/sindresorhus/got)"
+127.0.0.1 - - [30/Apr/2022:17:40:26 -0400] 602931 "GET /t/22/04/eth/mds/mds.php?tokenId=4 HTTP/1.1" 200 147 "-" "python-requests/2.25.1"
+2600:1900... - - [30/Apr/2022:17:40:26 -0400] 596539 "GET /t/22/04/eth/mds/4 HTTP/1.1" 200 147 "-" "python-requests/2.25.1"
+2600:1900... - - [30/Apr/2022:17:40:32 -0400] 480598 "GET /t/22/04/eth/mds/4.png HTTP/1.1" 200 5460 "-" "python-requests/2.25.1"
+127.0.0.1 - - [30/Apr/2022:17:40:34 -0400] 175622 "GET /t/22/04/eth/mds/mds.php?tokenId=4 HTTP/1.1" 200 147 "-" "okhttp/4.9.3"
+35... - - [30/Apr/2022:17:40:34 -0400] 171515 "GET /t/22/04/eth/mds/4 HTTP/1.1" 200 147 "-" "okhttp/4.9.3"
+54... - - [30/Apr/2022:17:40:35 -0400] 058916 "GET /t/22/04/eth/mds/4.png HTTP/1.1" 200 5460 "-" "okhttp/4.9.3"
+127.0.0.1 - - [30/Apr/2022:17:40:41 -0400] 948638 "GET /t/22/04/eth/mds/mds.php?tokenId=4 HTTP/1.1" 200 147 "-" "axios/0.24.0"
+54... - - [30/Apr/2022:17:40:41 -0400] 944524 "GET /t/22/04/eth/mds/4 HTTP/1.1" 200 147 "-" "axios/0.24.0"
+54...  - - [30/Apr/2022:17:40:42 -0400] 187538 "HEAD /t/22/04/eth/mds/4.png HTTP/1.1" 200 - "-" "axios/0.24.0"
+54...  - - [30/Apr/2022:17:40:42 -0400] 198125 "GET /t/22/04/eth/mds/4.png HTTP/1.1" 200 5460 "-" "axios/0.24.0"
+       </pre>
+
+       <p>I have specific reason to believe that the "python requests" are OpenSea.  Then it seems lots of other people start reading it.  There are 
+           more already, and I'm writing this at 18:06.  For the moment, I'm pretty much out of ideas on what more to try.  
+           
+       </p>
+       
+       <p>Then look at <a href='https://testnets.opensea.io/collection/nfttutorial-h4tjedv6nw'>OpenSea at my contract</a>.  Even if you click on 
+           the <a href='https://testnets.opensea.io/assets/0x09789fc3bca6cab64a6f3d6b86defa360710b10c/4'>individual images</a>, it just will not show 
+           the *($@(!! image.  
+           
+       </p>
+       
+       <p>The loopback address (127.0.0.1) is where I use a proxy "trick" to rewrite and keep the same URL from the user's perspective.  The rewrite request is 
+           done internally and then handed to the external user.  
+           
+           Although I had 
+           already confirmed that OpenSea was following 302 redirects and retrieving the image just fine.  
+           
+       </p>
+       
+   </section>
+   
+   <h2>my doings</h2>
+   
+   <p>I've only been using <a href='https://rinkeby.etherscan.io/address/0x9BEb87E50Dbb3f1356C9B8d72A5F08C794d3b95f'>one address</a> 
+       ( 0x9BEb87E50Dbb3f1356C9B8d72A5F08C794d3b95f ) on the Rinkeby Ether testnet.  <a href='https://github.com/kwynncom/nft'>My code</a> is in GitHub.  
+       Most of the contracts are verified on Etherscan, meaning you can read the code there, too.  
+   </p>
+    
+   <p>I may add more commentary later, but I should post this for now.
+       
+   </p>
+   
+</section>
+    
+</body>
+</html>

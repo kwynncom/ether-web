@@ -8,22 +8,35 @@
 
 <script src='/opt/js/web3/web3.min.js'></script>
 <script>
-    
-    // var web3v = require('web3');
-    
+
 class nftMintWeb2BtnCl {
- 
+
 config() { // CONFIG HERE ******************
     this.configv = { 
-        to    : '0x5FbDB2315678afecb367f032d93F642f64180aa3', // contract address
-        data  : '0x804f43cd',
-        value : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei
+        contract_address   : '0x0759Fc4cEb7cCdFC2EFEBa5122932b793642354a', // must be "to" upon final call
+        whitelistMint_sig  : '0x804f43cd', // must be "data"
+        freelistMint_sig   : '0x5b70ea9f',
+        generalMint_sig	   : '0x9e41c64d',
+        mintPriceHex       : '0x11c37937e080000', // 0x11c37937e080000 === 0.08 ETH in hex Wei ; must be "value"
     }; // CONFIG HERE ********************        
+}
+
+getPrice  (getas) { // not using this yet; may remove
+
+	const prconvert = {'0x11c37937e080000' : '0.08'};
+	
+	const hex = this.configv.mintPriceHex;
+	
+	const ETHs = prconvert[hex];
+	kwas( ETHs && parseFloat(ETHs) > 0.079, 'hex to ETH lookup failed');
+	
+	if (getas === 'hex') return hex;
+	if (getas === 'ETH') return ETHs;
+	kwas(false, 'bad return type to getPrice()');
 }
 
 constructor() { this.config(); }
 
-    
 async connect() { 
     this.showConnResult('beforeConn');
     await ethereum.request({ method: 'eth_requestAccounts' }); 
@@ -42,15 +55,18 @@ showConnResult(state) {
     
 }
 
-async mint() {
+async mint(contractMintFunction) {
 
     this.showConnResult('beforeConn');
     if (!ethereum.selectedAddress) await this.connect();
     this.showConnResult();
 
     const custAddr = ethereum.selectedAddress;
-    const rargs = this.configv;
+    const rargs = {};
+    rargs.to = this.configv['contract_address'];
     rargs.from = rargs.recipient = custAddr;
+    if (contractMintFunction !== 'freelistMint') rargs.value = this.configv['mintPriceHex'];
+    rargs.data = this.configv[contractMintFunction + '_sig'];
 
     ethereum.request({
       method: 'eth_sendTransaction',
@@ -60,6 +76,8 @@ async mint() {
 } // func mint
 } // class NFT
 
+function kwas(v, msg) {	if (!v) { if (!msg) msg = 'unknown message'; throw msg; } }
+
 var myMintObj = new nftMintWeb2BtnCl();
 
 window.addEventListener('DOMContentLoaded', () => { 
@@ -68,13 +86,19 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+
+<style>
+	button { margin-bottom: 3ex; }
+</style>
+
 </head>
 <body>
 <div>
     <div style='margin-bottom: 2ex; margin-top: 1.5ex; '>
-        <div style='margin-bottom: 1.5ex;'><button onclick='myMintObj.connect();' style='font-size: 120%;'>Connect to MetaMask.</button></div>
+        <div><button onclick='myMintObj.connect();' style='font-size: 120%; margin-bottom: 1.5ex;'>Connect to MetaMask.</button></div>
         <div style='margin-bottom: 2.0ex; ' id='connrese'>&nbsp;</div>
-        <div><button onclick='myMintObj.mint();'    style='font-size: 120%;'>Mint an NFT</button></div>
+        <div><button onclick='myMintObj.mint("whitelistMint");'    style='font-size: 120%;'>whitelist mint for 0.08 ETH</button></div>	                	   		<div><button onclick='myMintObj.mint("freelistMint");'    style='font-size: 120%;'>freelist mint</button></div>
+	<div><button onclick='myMintObj.mint("generalMint");'    style='font-size: 120%;'>general public mint for 0.08 ETH</button></div>
     </div>
 </div>
 

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule (\d+)$ /t/22/04/eth/mds/mds.php?tokenId=$1 [R=302,L,P]
+# RewriteRule (\d+).png$ /t/22/04/eth/mds/imgs.php?tokenId=$1 [R=302,L,P]
